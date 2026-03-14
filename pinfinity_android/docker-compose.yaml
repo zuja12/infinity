@@ -1,0 +1,11 @@
+services:
+  pinfinity_android:
+    container_name: pinfinity_android
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pinfinity_android:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - D:\Downloads:/downloads

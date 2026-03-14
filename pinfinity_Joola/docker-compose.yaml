@@ -1,0 +1,38 @@
+services:
+  pinfinity:
+    container_name: pinfinity
+    # Build the image locally from the repository Dockerfile. Without this
+    # Compose will try to pull an image named "pinfinity" from a registry
+    # which results in "pull access denied" if it doesn't exist or is private.
+    build: .
+    image: pinfinity:latest
+    environment:
+      PINFINITY_NAME: "Infinity van Hans"
+      PINFINITY_EMAIL: "hansvlig30@hotmail.com"
+      PINFINITY_DEVICE_ID: "98D331F340E60001"
+      PINFINITY_DEVICE_NAME: "InfinityHans"
+      PINFINITY_SERIAL_NUMBER: "JIR2021050068"
+    restart: always
+    networks:
+      - web
+    volumes:
+      - ./pinfinity:/app/app/data
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    restart: always
+    networks:
+      - web
+    depends_on:
+      - pinfinity
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+
+networks:
+  web:
+    driver: bridge
+    
