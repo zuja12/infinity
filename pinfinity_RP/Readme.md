@@ -4,7 +4,10 @@ This README focuses on running the Infinity software on a standard Raspberry Pi 
 It will likely also work on DietPi or other Raspberry Pi–based operating systems.
 
 Be aware that some python files have been altered to make this work.  
-**So when you change the username, the system will not run!**
+***So when you change the username, the system will not run!***  
+It is not a problem to change the password of infinity and/or root.
+
+***If you have made new certificates, do not forget to copy the certs folder from the Infinity_Joola folder to this folder.***
 
 ---
 
@@ -133,4 +136,39 @@ https://<IP_ADDRESS>/node/notifications
 ```
 
 If the page loads, the system is running.
+
+# DietPi commands
+| command | description |
+|----------|----------|
+| dietpi-launcher | All the DietPi programs in one place |
+| dietpi-config | Feature rich configuration tool for your device |
+| dietpi-software | Select optimised software for installation |
+| htop            | Resource monitor |
+| cpu             | Shows CPU information and stats |
+
+# DietPi installation infinity
+Basic accounts for DietPi are: dietpi and root  
+You can create a new account infinity with the command
+```sh
+adduser infinity
+# add sudo rights to infinity
+usermod -aG sudo infinity
+# add dietpi rights to infinity
+usermod -aG dietpi infinity
+# not necessary, populate with default bash configuration files
+cp /etc/skel/.bashrc /home/infinity/
+cp /etc/skel/.profile /home/infinity/
+chown infinity:infinity /home/infinity/.bashrc /home/infinity/.profile
+```
+or just create a new folder named /home/infinity.
+
+Activate Bluetooth:  
+*dietpi-config &#8594; 4  : Advanced Options.*  
+Install OpenSSH server:  
+*dietpi-software &#8594; SSH Server &#8594; OpenSSH server*  
+Start the installation:  
+*dietpi-software &#8594; Install*
+
+PermitRootLogin is located in /etc/ssh/sshd_config.d/dietpi.conf
+
 
