@@ -31,3 +31,6 @@ Hier hoef je niets te doen. De de gepatchte APK's staan hier al. De 2.1.1 kan zo
 Voor een xapk bestand heb je de "XAPK installer" nodig (https://play.google.com/store/apps/details?id=com.wuliang.xapkinstaller&hl=nl).
 
 Alles is getest en het werkt.
+
+## pinfinity_RP folder
+This is the Raspbarry Pi version. Read the Readme.md in this folder.
